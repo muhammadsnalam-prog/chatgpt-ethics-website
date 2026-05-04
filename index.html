@@ -1,1 +1,737 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ChatGPT Ethics Project</title>
+
+  <style>
+    :root {
+      --bg: #f5f7fb;
+      --dark: #101828;
+      --text: #344054;
+      --muted: #667085;
+      --card: #ffffff;
+      --blue: #2563eb;
+      --purple: #7c3aed;
+      --green: #039855;
+      --orange: #f79009;
+      --red: #d92d20;
+      --border: #e4e7ec;
+      --shadow: 0 12px 30px rgba(16, 24, 40, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    header {
+      background: linear-gradient(135deg, #101828, #1d4ed8, #7c3aed);
+      color: white;
+      padding: 70px 20px 90px;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: clamp(2.2rem, 5vw, 4.5rem);
+      margin: 0 0 18px;
+      line-height: 1.05;
+    }
+
+    header p {
+      max-width: 850px;
+      margin: 0 auto 28px;
+      font-size: 1.15rem;
+      color: #e0e7ff;
+    }
+
+    .badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 25px;
+    }
+
+    .badge {
+      background: rgba(255, 255, 255, 0.16);
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      padding: 10px 14px;
+      border-radius: 999px;
+      font-weight: bold;
+      font-size: 0.9rem;
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: white;
+      border-bottom: 1px solid var(--border);
+      box-shadow: 0 2px 8px rgba(16, 24, 40, 0.05);
+      padding: 12px 20px;
+    }
+
+    nav .nav-inner {
+      max-width: 1150px;
+      margin: auto;
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    nav a {
+      color: var(--dark);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: bold;
+      padding: 8px 10px;
+      border-radius: 999px;
+    }
+
+    nav a:hover {
+      background: #eff6ff;
+      color: var(--blue);
+    }
+
+    main {
+      max-width: 1150px;
+      margin: -45px auto 60px;
+      padding: 0 20px;
+    }
+
+    section {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 34px;
+      margin-bottom: 26px;
+      box-shadow: var(--shadow);
+    }
+
+    h2 {
+      color: var(--dark);
+      margin-top: 0;
+      font-size: 2rem;
+      line-height: 1.2;
+    }
+
+    h3 {
+      color: var(--dark);
+      margin-bottom: 8px;
+    }
+
+    .section-label {
+      color: var(--blue);
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.8rem;
+      margin-bottom: 8px;
+    }
+
+    .grid {
+      display: grid;
+      gap: 18px;
+    }
+
+    .grid-2 {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .grid-3 {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .card {
+      background: #f9fafb;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 22px;
+    }
+
+    .card h3 {
+      margin-top: 0;
+    }
+
+    .icon {
+      width: 44px;
+      height: 44px;
+      display: grid;
+      place-items: center;
+      border-radius: 14px;
+      background: #eff6ff;
+      color: var(--blue);
+      font-size: 1.4rem;
+      margin-bottom: 10px;
+    }
+
+    .diagram {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-top: 24px;
+      text-align: center;
+    }
+
+    .diagram-step {
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      border-radius: 18px;
+      padding: 18px;
+      font-weight: bold;
+      color: #1e3a8a;
+      position: relative;
+    }
+
+    .diagram-step:not(:last-child)::after {
+      content: "→";
+      position: absolute;
+      right: -14px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--blue);
+      font-size: 1.4rem;
+    }
+
+    .risk-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .risk {
+      border-radius: 18px;
+      padding: 16px;
+      text-align: center;
+      border: 1px solid var(--border);
+      background: #fff7ed;
+    }
+
+    .risk strong {
+      display: block;
+      color: var(--dark);
+      margin-bottom: 4px;
+    }
+
+    .risk span {
+      font-size: 0.87rem;
+      color: var(--muted);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      overflow: hidden;
+      border-radius: 16px;
+      margin-top: 18px;
+      background: white;
+    }
+
+    th, td {
+      padding: 15px;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+
+    th {
+      background: #101828;
+      color: white;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    .callout {
+      border-left: 5px solid var(--blue);
+      background: #eff6ff;
+      padding: 18px 20px;
+      border-radius: 14px;
+      margin-top: 18px;
+      color: #1e3a8a;
+      font-weight: bold;
+    }
+
+    .quote {
+      background: linear-gradient(135deg, #eff6ff, #f5f3ff);
+      border: 1px solid #dbeafe;
+      border-radius: 20px;
+      padding: 24px;
+      font-size: 1.15rem;
+      color: var(--dark);
+      font-weight: bold;
+      text-align: center;
+    }
+
+    ul {
+      padding-left: 22px;
+    }
+
+    .source-list a {
+      color: var(--blue);
+      word-break: break-word;
+    }
+
+    footer {
+      text-align: center;
+      padding: 35px 20px;
+      color: var(--muted);
+    }
+
+    .team-box {
+      background: #f9fafb;
+      border: 1px dashed #98a2b3;
+      padding: 16px;
+      border-radius: 16px;
+      margin-top: 18px;
+    }
+
+    @media (max-width: 850px) {
+      .grid-2,
+      .grid-3,
+      .diagram,
+      .risk-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .diagram-step:not(:last-child)::after {
+        display: none;
+      }
+
+      section {
+        padding: 24px;
+      }
+
+      nav {
+        position: static;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>ChatGPT: Innovation, Ethics, and Social Impact</h1>
+    <p>
+      A public-facing website explaining what ChatGPT is, how it is used in the real world,
+      and why its benefits must be balanced with ethical responsibility.
+    </p>
+
+    <div class="badge-row">
+      <div class="badge">Advanced IT: Generative AI</div>
+      <div class="badge">Applications: Education & Customer Service</div>
+      <div class="badge">Ethical Lenses: Utilitarianism & Deontology</div>
+    </div>
+  </header>
+
+  <nav>
+    <div class="nav-inner">
+      <a href="#intro">Intro</a>
+      <a href="#technology">Technology</a>
+      <a href="#applications">Applications</a>
+      <a href="#challenges">Challenges</a>
+      <a href="#ethics">Ethics</a>
+      <a href="#implications">Implications</a>
+      <a href="#recommendations">Recommendations</a>
+      <a href="#stakeholders">Stakeholders</a>
+      <a href="#sources">Sources</a>
+    </div>
+  </nav>
+
+  <main>
+    <section id="intro">
+      <div class="section-label">Homepage / Introduction</div>
+      <h2>What technology did we choose?</h2>
+      <p>
+        Our team chose <strong>ChatGPT</strong>, a generative artificial intelligence chatbot created by OpenAI.
+        ChatGPT can produce text-based responses, answer questions, summarize information, brainstorm ideas,
+        write code, explain concepts, and assist with many communication tasks.
+      </p>
+      <p>
+        We chose ChatGPT because it is one of the most recognizable examples of advanced information technology.
+        It is already used by students, teachers, businesses, and everyday users. Because of this, ChatGPT is not
+        only a technical tool. It is also a social tool that affects education, work, trust, creativity, privacy,
+        and responsibility.
+      </p>
+
+      <div class="quote">
+        Main argument: ChatGPT should support human thinking, not replace human responsibility.
+      </div>
+    </section>
+
+    <section id="technology">
+      <div class="section-label">Technology Explanation</div>
+      <h2>How does ChatGPT work?</h2>
+      <p>
+        ChatGPT is powered by a large language model. A language model learns patterns from large amounts of text
+        and then predicts what words are likely to come next in a response. This allows ChatGPT to create answers
+        that sound natural and helpful.
+      </p>
+      <p>
+        However, ChatGPT does not understand the world the same way a human does. It can produce confident answers
+        that are incomplete, biased, outdated, or incorrect. This is why human review is important, especially in
+        education, business, healthcare, law, and other serious settings.
+      </p>
+
+      <div class="diagram">
+        <div class="diagram-step">User asks a question</div>
+        <div class="diagram-step">AI model predicts a response</div>
+        <div class="diagram-step">ChatGPT gives an answer</div>
+        <div class="diagram-step">Human checks and uses it responsibly</div>
+      </div>
+
+      <div class="callout">
+        ChatGPT is powerful because it is easy to use, but that also makes it risky when users trust it without checking.
+      </div>
+    </section>
+
+    <section id="applications">
+      <div class="section-label">Applications of the Technology</div>
+      <h2>Real-world applications of ChatGPT</h2>
+      <p>
+        Our website focuses on two major application areas: education and customer service/business productivity.
+        These examples show how ChatGPT can be useful while also creating ethical concerns.
+      </p>
+
+      <div class="grid grid-2">
+        <div class="card">
+          <div class="icon">🎓</div>
+          <h3>Application 1: Education</h3>
+          <p>
+            Students can use ChatGPT to explain difficult topics, summarize readings, brainstorm essay ideas,
+            practice questions, and receive tutoring-style help. Universities may also use AI tools to support
+            students, faculty, researchers, and campus operations.
+          </p>
+          <p>
+            <strong>Benefit:</strong> ChatGPT can make learning support faster and more personalized.
+          </p>
+          <p>
+            <strong>Challenge:</strong> Students may use it to complete assignments without understanding the material,
+            which can weaken learning and academic honesty.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="icon">💬</div>
+          <h3>Application 2: Customer Service & Business</h3>
+          <p>
+            Businesses can use ChatGPT-like tools to answer customer questions, draft responses, summarize customer
+            issues, create internal documents, and help employees work more efficiently.
+          </p>
+          <p>
+            <strong>Benefit:</strong> ChatGPT can reduce workload and improve response speed.
+          </p>
+          <p>
+            <strong>Challenge:</strong> AI may give wrong answers, mishandle sensitive information, or reduce the need
+            for some human jobs if companies use it carelessly.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="challenges">
+      <div class="section-label">Social Challenges</div>
+      <h2>What makes ChatGPT complicated?</h2>
+      <p>
+        ChatGPT is ethically complicated because it can be helpful and harmful at the same time. The same tool that
+        helps a student understand a topic can also help another student cheat. The same tool that helps a business
+        respond faster can also spread wrong information to customers.
+      </p>
+
+      <div class="risk-grid">
+        <div class="risk">
+          <strong>Misinformation</strong>
+          <span>AI can produce confident but incorrect answers.</span>
+        </div>
+        <div class="risk">
+          <strong>Bias</strong>
+          <span>AI can reflect unfair patterns from training data.</span>
+        </div>
+        <div class="risk">
+          <strong>Privacy</strong>
+          <span>Users may enter sensitive personal or business data.</span>
+        </div>
+        <div class="risk">
+          <strong>Job Impact</strong>
+          <span>Automation can change or reduce some work roles.</span>
+        </div>
+        <div class="risk">
+          <strong>Overdependence</strong>
+          <span>People may stop practicing their own thinking skills.</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="ethics">
+      <div class="section-label">Critical Ethical Analysis</div>
+      <h2>Ethical lenses used in our analysis</h2>
+      <p>
+        We analyzed ChatGPT using two ethical lenses: <strong>utilitarianism</strong> and <strong>deontology</strong>.
+        These lenses are useful because they look at the technology from different angles. Utilitarianism focuses on
+        outcomes, while deontology focuses on duties, rules, and responsibilities.
+      </p>
+
+      <div class="grid grid-2">
+        <div class="card">
+          <div class="icon">⚖️</div>
+          <h3>Lens 1: Utilitarianism</h3>
+          <p>
+            Utilitarianism asks whether a technology creates more overall benefit than harm. From this view,
+            ChatGPT can be ethical if it improves learning, saves time, supports workers, and helps more people
+            access information.
+          </p>
+          <p>
+            However, if ChatGPT increases cheating, spreads misinformation, violates privacy, or causes harmful
+            job disruption, then the harms may outweigh the benefits.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="icon">📜</div>
+          <h3>Lens 2: Deontology</h3>
+          <p>
+            Deontology asks whether people are following moral duties and rules. From this view, students have a
+            duty to be honest, businesses have a duty to avoid misleading customers, and developers have a duty to
+            reduce bias and improve transparency.
+          </p>
+          <p>
+            Even if ChatGPT creates benefits, it can still be unethical if it is used dishonestly or without respect
+            for privacy, consent, and accountability.
+          </p>
+        </div>
+      </div>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Context</th>
+            <th>Utilitarian Question</th>
+            <th>Deontological Question</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Education</td>
+            <td>Does ChatGPT improve learning more than it harms academic honesty?</td>
+            <td>Are students using ChatGPT honestly and following course rules?</td>
+          </tr>
+          <tr>
+            <td>Customer Service</td>
+            <td>Does ChatGPT improve service quality more than it risks misinformation?</td>
+            <td>Are companies being transparent when AI is used to communicate with customers?</td>
+          </tr>
+          <tr>
+            <td>Privacy</td>
+            <td>Do the productivity benefits outweigh the privacy risks?</td>
+            <td>Are users’ data rights being respected?</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="implications">
+      <div class="section-label">Social Implications</div>
+      <h2>Why does this matter socially and politically?</h2>
+      <div class="grid grid-3">
+        <div class="card">
+          <h3>Political influence</h3>
+          <p>
+            ChatGPT can help people understand political issues, but it can also be used to create persuasive
+            misinformation or biased political content.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Economic impact</h3>
+          <p>
+            AI can help workers become more productive, but it may also change job expectations and reduce demand
+            for some repetitive writing or support tasks.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Cultural change</h3>
+          <p>
+            ChatGPT may change how people learn, write, create, and communicate. Society must decide when AI help
+            is useful and when it weakens human creativity or responsibility.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="recommendations">
+      <div class="section-label">Recommendations</div>
+      <h2>How can ChatGPT be used in a less harmful way?</h2>
+
+      <div class="grid grid-2">
+        <div class="card">
+          <h3>For schools and teachers</h3>
+          <ul>
+            <li>Create clear rules explaining when AI use is allowed.</li>
+            <li>Design assignments that require personal reflection, drafts, or oral explanation.</li>
+            <li>Teach students how to verify AI responses instead of blindly copying them.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>For students</h3>
+          <ul>
+            <li>Use ChatGPT as a tutor, not as a replacement for your own work.</li>
+            <li>Do not submit AI-generated writing as if it is fully your own.</li>
+            <li>Ask ChatGPT to quiz you, explain concepts, or help organize ideas.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>For businesses</h3>
+          <ul>
+            <li>Review AI-generated customer responses before relying on them.</li>
+            <li>Avoid entering sensitive customer or company information into unapproved tools.</li>
+            <li>Tell customers when they are interacting with AI.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>For developers and policymakers</h3>
+          <ul>
+            <li>Improve transparency about AI limits and risks.</li>
+            <li>Test AI systems for bias, privacy risks, and unsafe outputs.</li>
+            <li>Create policies for high-risk uses of AI in schools, business, and public services.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="callout">
+        Our recommendation is not to ban ChatGPT. Instead, it should be used with clear rules, human oversight,
+        privacy protection, and accountability.
+      </div>
+    </section>
+
+    <section id="stakeholders">
+      <div class="section-label">Stakeholders</div>
+      <h2>Who should care?</h2>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Stakeholder</th>
+            <th>Why they should care</th>
+            <th>Recommended action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Students</td>
+            <td>ChatGPT can help them learn, but it can also weaken honesty and critical thinking.</td>
+            <td>Use AI for support, not for cheating.</td>
+          </tr>
+          <tr>
+            <td>Teachers</td>
+            <td>AI changes how assignments, grading, and academic integrity work.</td>
+            <td>Create clear AI-use policies.</td>
+          </tr>
+          <tr>
+            <td>Businesses</td>
+            <td>AI can improve productivity, but mistakes can affect customers and trust.</td>
+            <td>Use human review and protect sensitive data.</td>
+          </tr>
+          <tr>
+            <td>Developers</td>
+            <td>They shape how safe, fair, and transparent AI systems become.</td>
+            <td>Build safer tools with transparency and bias testing.</td>
+          </tr>
+          <tr>
+            <td>Policymakers</td>
+            <td>AI affects public trust, education, employment, and privacy.</td>
+            <td>Create rules for responsible AI use in high-impact settings.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="team-box">
+        <strong>Team contribution note:</strong>
+        Add names here before final submission if required.
+        Example: Muhammad — website build/content; Kazè — slideshow/presentation; ERFAN — website support/deployment.
+      </div>
+    </section>
+
+    <section id="conclusion">
+      <div class="section-label">Conclusion</div>
+      <h2>Final takeaway</h2>
+      <p>
+        ChatGPT is a powerful example of advanced information technology. It can support education, improve business
+        communication, and help people work faster. At the same time, it creates serious concerns about misinformation,
+        bias, privacy, academic honesty, job impact, and accountability.
+      </p>
+      <p>
+        Our conclusion is that ChatGPT should be treated as a tool that supports human judgment, not a tool that replaces it.
+        The future of ChatGPT depends on how responsibly students, schools, businesses, developers, and policymakers choose
+        to use it.
+      </p>
+
+      <div class="quote">
+        ChatGPT is most ethical when humans stay informed, responsible, and in control.
+      </div>
+    </section>
+
+    <section id="sources">
+      <div class="section-label">Sources</div>
+      <h2>Research sources</h2>
+      <p>
+        These sources helped support our explanation of ChatGPT, its applications, and responsible AI use.
+      </p>
+
+      <ul class="source-list">
+        <li>
+          OpenAI. “Introducing ChatGPT Edu.”
+          <a href="https://openai.com/index/introducing-chatgpt-edu/" target="_blank">
+            https://openai.com/index/introducing-chatgpt-edu/
+          </a>
+        </li>
+        <li>
+          OpenAI. “Introducing ChatGPT Enterprise.”
+          <a href="https://openai.com/index/introducing-chatgpt-enterprise/" target="_blank">
+            https://openai.com/index/introducing-chatgpt-enterprise/
+          </a>
+        </li>
+        <li>
+          OpenAI Help Center. “Data Controls FAQ.”
+          <a href="https://help.openai.com/en/articles/7730893-data-controls-faq" target="_blank">
+            https://help.openai.com/en/articles/7730893-data-controls-faq
+          </a>
+        </li>
+        <li>
+          National Institute of Standards and Technology. “AI Risk Management Framework.”
+          <a href="https://www.nist.gov/itl/ai-risk-management-framework" target="_blank">
+            https://www.nist.gov/itl/ai-risk-management-framework
+          </a>
+        </li>
+        <li>
+          UNESCO. “Guidance for Generative AI in Education and Research.”
+          <a href="https://www.unesco.org/en/articles/guidance-generative-ai-education-and-research" target="_blank">
+            https://www.unesco.org/en/articles/guidance-generative-ai-education-and-research
+          </a>
+        </li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <p>Final Project Website | ChatGPT, Ethics, and Society</p>
+  </footer>
+</body>
+</html>
