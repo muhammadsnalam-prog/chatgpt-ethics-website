@@ -3,440 +3,696 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ChatGPT Ethics Project | Final Website</title>
-  <meta name="description" content="A final project website analyzing ChatGPT, real-world applications, ethical concerns, and recommendations." />
-
+  <title>ChatGPT: Innovation, Ethics, and Social Impact</title>
   <style>
     :root {
-      --bg: #f4f7fb;
-      --dark: #0f172a;
-      --text: #334155;
-      --muted: #64748b;
-      --card: #ffffff;
-      --line: #e2e8f0;
+      --dark: #081225;
+      --navy: #0f1f45;
       --blue: #2563eb;
-      --blue-dark: #1e3a8a;
+      --cyan: #06b6d4;
       --purple: #7c3aed;
-      --green: #059669;
-      --amber: #d97706;
-      --red: #dc2626;
-      --shadow: 0 18px 45px rgba(15, 23, 42, 0.08);
-      --radius: 24px;
+      --pink: #db2777;
+      --green: #10b981;
+      --orange: #f97316;
+      --yellow: #facc15;
+      --bg: #eef5ff;
+      --soft: #f8fbff;
+      --card: rgba(255, 255, 255, 0.9);
+      --border: #d7e4f5;
+      --text: #172033;
+      --muted: #536174;
+      --shadow: 0 22px 60px rgba(15, 31, 69, 0.14);
+      --radius: 26px;
     }
 
-    * { box-sizing: border-box; scroll-behavior: smooth; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
 
     body {
-      margin: 0;
-      font-family: Inter, Arial, Helvetica, sans-serif;
-      background: radial-gradient(circle at top left, #dbeafe 0, transparent 32%), var(--bg);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(37, 99, 235, 0.18), transparent 34%),
+        radial-gradient(circle at top right, rgba(124, 58, 237, 0.18), transparent 28%),
+        linear-gradient(180deg, #f7fbff 0%, var(--bg) 45%, #f7fbff 100%);
       color: var(--text);
       line-height: 1.65;
     }
 
-    a { color: var(--blue); }
+    a {
+      color: #155eef;
+      text-decoration-thickness: 2px;
+      text-underline-offset: 3px;
+    }
 
     .hero {
-      background:
-        radial-gradient(circle at 12% 20%, rgba(255,255,255,0.22), transparent 20%),
-        linear-gradient(135deg, #0f172a 0%, #1d4ed8 48%, #7c3aed 100%);
+      position: relative;
+      overflow: hidden;
       color: white;
-      padding: 80px 20px 76px;
+      background:
+        radial-gradient(circle at 15% 20%, rgba(6, 182, 212, 0.55), transparent 24%),
+        radial-gradient(circle at 82% 15%, rgba(219, 39, 119, 0.45), transparent 24%),
+        linear-gradient(135deg, #0f1f45 0%, #1d4ed8 50%, #7c3aed 100%);
+      min-height: 610px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 80px 24px 70px;
+    }
+
+    .hero::before,
+    .hero::after {
+      content: "";
+      position: absolute;
+      border-radius: 999px;
+      filter: blur(2px);
+      opacity: 0.55;
+      pointer-events: none;
+    }
+
+    .hero::before {
+      width: 420px;
+      height: 420px;
+      background: rgba(255, 255, 255, 0.1);
+      top: -170px;
+      left: -110px;
+    }
+
+    .hero::after {
+      width: 520px;
+      height: 520px;
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      bottom: -260px;
+      right: -180px;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 1120px;
+      width: 100%;
       text-align: center;
     }
 
-    .hero-inner { max-width: 1120px; margin: 0 auto; }
-
-    .eyebrow {
+    .pill {
       display: inline-flex;
       align-items: center;
+      justify-content: center;
       gap: 8px;
-      padding: 8px 14px;
+      border: 1px solid rgba(255, 255, 255, 0.34);
+      background: rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(10px);
+      padding: 10px 16px;
       border-radius: 999px;
-      background: rgba(255,255,255,0.14);
-      border: 1px solid rgba(255,255,255,0.28);
-      font-weight: 700;
-      font-size: 0.9rem;
-      margin-bottom: 18px;
+      font-size: 0.82rem;
+      font-weight: 850;
+      letter-spacing: 0.02em;
+      box-shadow: 0 8px 28px rgba(0, 0, 0, 0.14);
     }
 
     h1 {
-      margin: 0;
-      font-size: clamp(2.5rem, 6vw, 5.2rem);
-      line-height: 0.96;
-      letter-spacing: -0.05em;
+      max-width: 980px;
+      margin: 22px auto 18px;
+      font-size: clamp(3.2rem, 7.5vw, 6.8rem);
+      line-height: 0.9;
+      letter-spacing: -0.075em;
+      font-weight: 950;
     }
 
     .hero p {
-      max-width: 850px;
-      margin: 22px auto 0;
-      font-size: clamp(1rem, 2vw, 1.22rem);
-      color: #e0e7ff;
+      max-width: 760px;
+      margin: 0 auto;
+      font-size: clamp(1.05rem, 1.7vw, 1.32rem);
+      color: rgba(255, 255, 255, 0.92);
     }
 
     .hero-actions {
-      margin-top: 30px;
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
-      gap: 12px;
+      gap: 16px;
+      margin-top: 34px;
     }
 
     .button {
-      display: inline-block;
-      text-decoration: none;
-      font-weight: 800;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
       border-radius: 999px;
-      padding: 12px 18px;
-      border: 1px solid rgba(255,255,255,0.3);
+      padding: 14px 22px;
+      min-width: 190px;
+      font-weight: 900;
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      text-decoration: none;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    }
+
+    .button.primary {
+      color: #0f2b6b;
       background: white;
-      color: #1e3a8a;
+      box-shadow: 0 12px 30px rgba(8, 18, 37, 0.18);
     }
 
     .button.secondary {
-      background: rgba(255,255,255,0.12);
       color: white;
+      background: rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(10px);
     }
 
-    .stat-row {
+    .button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 34px rgba(8, 18, 37, 0.18);
+    }
+
+    .hero-stats {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
+      gap: 18px;
       margin: 42px auto 0;
-      max-width: 980px;
-    }
-
-    .stat {
-      background: rgba(255,255,255,0.12);
-      border: 1px solid rgba(255,255,255,0.22);
-      border-radius: 20px;
-      padding: 18px;
+      max-width: 900px;
       text-align: left;
     }
 
-    .stat strong { display: block; color: white; font-size: 1.1rem; }
-    .stat span { color: #dbeafe; font-size: 0.92rem; }
+    .stat-card {
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      background: rgba(255, 255, 255, 0.13);
+      border-radius: 22px;
+      padding: 20px;
+      backdrop-filter: blur(14px);
+    }
+
+    .stat-card strong {
+      display: block;
+      font-size: 0.98rem;
+      margin-bottom: 6px;
+    }
+
+    .stat-card span {
+      display: block;
+      font-size: 0.82rem;
+      color: rgba(255, 255, 255, 0.88);
+    }
 
     nav {
       position: sticky;
       top: 0;
-      z-index: 99;
-      background: rgba(255,255,255,0.93);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--line);
-      padding: 10px 16px;
+      z-index: 20;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      box-shadow: 0 12px 24px rgba(8, 18, 37, 0.06);
     }
 
     .nav-inner {
-      max-width: 1250px;
+      max-width: 1260px;
       margin: 0 auto;
       display: flex;
       gap: 3px;
       justify-content: center;
       flex-wrap: wrap;
+      padding: 12px 14px;
     }
 
     nav a {
       color: var(--dark);
       text-decoration: none;
-      font-size: 0.8rem;
-      font-weight: 800;
-      padding: 7px 8px;
+      font-size: 0.78rem;
+      font-weight: 900;
+      padding: 8px 9px;
       border-radius: 999px;
+      transition: 0.18s ease;
+      white-space: nowrap;
     }
 
-    nav a:hover { background: #eff6ff; color: var(--blue); }
+    nav a:hover {
+      background: #eaf2ff;
+      color: #1d4ed8;
+    }
 
     main {
       max-width: 1180px;
-      margin: 34px auto 70px;
-      padding: 0 20px;
+      margin: 0 auto;
+      padding: 34px 22px 90px;
     }
 
     section {
       background: var(--card);
-      border: 1px solid var(--line);
+      border: 1px solid var(--border);
       border-radius: var(--radius);
       box-shadow: var(--shadow);
-      margin-bottom: 28px;
-      padding: 34px;
+      padding: clamp(26px, 4vw, 44px);
+      margin: 28px 0;
+      scroll-margin-top: 92px;
     }
 
     .section-top {
       display: flex;
+      align-items: flex-start;
       justify-content: space-between;
       gap: 20px;
-      align-items: flex-start;
-      margin-bottom: 18px;
+      margin-bottom: 20px;
     }
 
     .label {
       color: var(--blue);
-      font-weight: 900;
-      letter-spacing: 0.12em;
       text-transform: uppercase;
-      font-size: 0.76rem;
-      margin-bottom: 8px;
+      letter-spacing: 0.22em;
+      font-size: 0.74rem;
+      font-weight: 950;
+      margin-bottom: 10px;
     }
 
     h2 {
-      color: var(--dark);
-      font-size: clamp(1.6rem, 3vw, 2.35rem);
-      letter-spacing: -0.035em;
-      line-height: 1.12;
-      margin: 0 0 10px;
-    }
-
-    h3 { color: var(--dark); line-height: 1.2; margin: 0 0 10px; }
-
-    .subtitle { max-width: 860px; color: var(--muted); margin-top: 0; }
-
-    .grid { display: grid; gap: 18px; }
-    .grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    .grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-    .grid-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
-
-    .card {
-      background: #f8fafc;
-      border: 1px solid var(--line);
-      border-radius: 20px;
-      padding: 22px;
-      height: 100%;
-    }
-
-    .card.white { background: white; }
-
-    .icon {
-      width: 46px;
-      height: 46px;
-      border-radius: 16px;
-      display: grid;
-      place-items: center;
-      font-size: 1.35rem;
-      background: #eff6ff;
-      color: var(--blue);
+      color: #061022;
+      font-size: clamp(2rem, 3.2vw, 3.2rem);
+      line-height: 1.02;
+      letter-spacing: -0.045em;
       margin-bottom: 14px;
     }
 
-    .pill-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
-    .pill {
-      border: 1px solid var(--line);
+    h3 {
+      color: #0b1528;
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+      line-height: 1.2;
+    }
+
+    p {
+      margin-bottom: 14px;
+    }
+
+    .subtitle {
+      color: #445369;
+      max-width: 900px;
+      font-size: 1.02rem;
+    }
+
+    .grid {
+      display: grid;
+      gap: 18px;
+      margin-top: 22px;
+    }
+
+    .grid-2 {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .grid-3 {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .grid-4 {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .card {
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 22px;
+      background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      border-color: #adc9f4;
+      box-shadow: 0 18px 34px rgba(15, 31, 69, 0.09);
+    }
+
+    .icon {
+      width: 44px;
+      height: 44px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 15px;
+      margin-bottom: 14px;
+      background: #edf5ff;
+      font-size: 1.28rem;
+    }
+
+    .gradient-card {
+      overflow: hidden;
+      padding: 0;
       background: white;
-      color: var(--dark);
+    }
+
+    .gradient-head {
+      min-height: 178px;
+      padding: 28px;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .blue-head {
+      background: linear-gradient(135deg, #1d4ed8, #06b6d4);
+    }
+
+    .pink-head {
+      background: linear-gradient(135deg, #7c3aed, #db2777);
+    }
+
+    .gradient-body {
+      padding: 28px;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
       border-radius: 999px;
-      padding: 8px 12px;
-      font-size: 0.86rem;
-      font-weight: 800;
+      padding: 7px 11px;
+      font-size: 0.77rem;
+      font-weight: 900;
+      background: #eef5ff;
+      color: #1847a5;
+      border: 1px solid #cfe0f9;
+    }
+
+    .mini-label {
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: #5c6c80;
+      font-size: 0.72rem;
+      font-weight: 950;
+      margin-top: 18px;
+      margin-bottom: 8px;
+    }
+
+    ul {
+      padding-left: 20px;
+      margin: 8px 0 0;
+    }
+
+    li {
+      margin: 7px 0;
     }
 
     .flow {
       display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 10px;
-      margin-top: 22px;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 26px;
+      align-items: stretch;
     }
 
     .flow-step {
-      background: linear-gradient(180deg, #eff6ff, #ffffff);
-      border: 1px solid #bfdbfe;
-      border-radius: 18px;
-      padding: 16px;
-      text-align: center;
-      font-weight: 900;
-      color: #1e3a8a;
-      min-height: 94px;
-      display: grid;
-      place-items: center;
       position: relative;
+      border: 1px solid #a8c8fb;
+      background: #f8fbff;
+      border-radius: 18px;
+      padding: 18px 12px;
+      text-align: center;
+      font-weight: 950;
+      color: #0f3b8f;
+      min-height: 92px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .flow-step:not(:last-child)::after {
       content: "→";
       position: absolute;
-      right: -12px;
+      right: -14px;
       top: 50%;
       transform: translateY(-50%);
-      color: var(--blue);
-      font-size: 1.3rem;
-      z-index: 2;
+      color: #2563eb;
+      font-size: 1.1rem;
+      font-weight: 950;
     }
 
     .callout {
-      margin-top: 18px;
-      border-left: 5px solid var(--blue);
-      background: #eff6ff;
-      border-radius: 16px;
-      padding: 18px 20px;
-      color: #1e3a8a;
-      font-weight: 800;
+      border-radius: 18px;
+      padding: 20px 22px;
+      margin-top: 22px;
+      border-left: 5px solid var(--orange);
+      background: #fff7e8;
+      font-weight: 850;
+      color: #773c05;
     }
 
-    .warning { border-left-color: var(--amber); background: #fffbeb; color: #92400e; }
-    .success { border-left-color: var(--green); background: #ecfdf5; color: #065f46; }
-
-    .case-card {
-      background: white;
-      border: 1px solid var(--line);
-      border-radius: 24px;
-      overflow: hidden;
-      height: 100%;
+    .callout.green {
+      border-left-color: var(--green);
+      background: #e8fff6;
+      color: #075b43;
     }
 
-    .case-head {
-      padding: 24px;
-      color: white;
-      background: linear-gradient(135deg, #1d4ed8, #7c3aed);
-    }
-
-    .case-head.education { background: linear-gradient(135deg, #1d4ed8, #06b6d4); }
-    .case-head.business { background: linear-gradient(135deg, #7c3aed, #db2777); }
-    .case-body { padding: 24px; }
-
-    .mini-title {
-      color: var(--muted);
-      text-transform: uppercase;
-      font-size: 0.76rem;
-      letter-spacing: 0.1em;
-      font-weight: 900;
-      margin: 18px 0 6px;
-    }
-
-    .risk-meter {
+    .risk-list {
       display: grid;
-      grid-template-columns: 1.1fr 2fr auto;
-      gap: 12px;
-      align-items: center;
-      padding: 12px 0;
-      border-bottom: 1px solid var(--line);
+      gap: 15px;
+      margin-top: 12px;
     }
 
-    .risk-meter:last-child { border-bottom: 0; }
-    .bar { height: 12px; border-radius: 999px; background: #e2e8f0; overflow: hidden; }
-    .fill { height: 100%; border-radius: inherit; background: linear-gradient(90deg, #2563eb, #7c3aed); }
-    .risk-meter strong { color: var(--dark); }
+    .risk-row {
+      display: grid;
+      grid-template-columns: 150px 1fr 95px;
+      align-items: center;
+      gap: 12px;
+      font-weight: 850;
+      font-size: 0.94rem;
+    }
+
+    .bar {
+      height: 11px;
+      background: #e3ebf5;
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .fill {
+      height: 100%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--blue), var(--purple));
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+      margin-top: 24px;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+    }
 
     table {
       width: 100%;
       border-collapse: collapse;
-      overflow: hidden;
-      border-radius: 16px;
-      margin-top: 18px;
+      min-width: 790px;
       background: white;
-      border: 1px solid var(--line);
     }
 
-    th, td {
-      padding: 15px;
+    th {
       text-align: left;
+      background: #071226;
+      color: white;
+      padding: 16px 18px;
+      font-size: 0.88rem;
+    }
+
+    td {
+      padding: 16px 18px;
+      border-top: 1px solid var(--border);
       vertical-align: top;
-      border-bottom: 1px solid var(--line);
     }
 
-    th { background: #0f172a; color: white; font-size: 0.92rem; }
-    tr:last-child td { border-bottom: none; }
-
-    .rubric {
+    .timeline {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 14px;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-top: 24px;
     }
 
-    .rubric-item {
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      padding: 16px;
-      background: #f8fafc;
+    .timeline-item {
+      position: relative;
+      padding: 24px;
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      background: #fff;
     }
 
-    .rubric-item strong { color: var(--dark); display: block; }
-    .check { color: var(--green); font-weight: 900; }
+    .timeline-number {
+      width: 36px;
+      height: 36px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, var(--blue), var(--purple));
+      color: white;
+      font-weight: 950;
+      margin-bottom: 14px;
+    }
+
+    .measure-card {
+      border-top: 5px solid var(--blue);
+    }
+
+    .measure-card:nth-child(2) { border-top-color: var(--purple); }
+    .measure-card:nth-child(3) { border-top-color: var(--green); }
+    .measure-card:nth-child(4) { border-top-color: var(--orange); }
 
     .stakeholder-card {
-      display: grid;
-      grid-template-columns: 42px 1fr;
-      gap: 14px;
-      align-items: start;
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
     }
 
     .small-icon {
-      width: 42px;
-      height: 42px;
-      display: grid;
-      place-items: center;
+      flex: 0 0 auto;
+      width: 38px;
+      height: 38px;
       border-radius: 14px;
-      background: #eef2ff;
-      font-size: 1.2rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: #edf5ff;
+      font-size: 1.06rem;
     }
 
-    .sources li { margin-bottom: 10px; }
+    .check-grid .card {
+      background: #fbfdff;
+    }
 
-    .footer {
-      padding: 38px 20px;
+    .sources li {
+      word-break: break-word;
+    }
+
+    footer {
       text-align: center;
-      color: var(--muted);
+      color: #64748b;
+      padding: 30px 10px 70px;
+      font-size: 0.92rem;
     }
 
-    @media (max-width: 900px) {
-      .grid-2, .grid-3, .grid-4, .flow, .stat-row, .rubric { grid-template-columns: 1fr; }
-      .flow-step:not(:last-child)::after { display: none; }
-      .section-top { display: block; }
-      section { padding: 24px; }
-      .risk-meter { grid-template-columns: 1fr; }
-      nav { position: static; }
+    .divider-title {
+      text-align: center;
+      margin: 40px auto 10px;
+      max-width: 760px;
+    }
+
+    .print-note {
+      display: none;
+    }
+
+    @media (max-width: 980px) {
+      .hero-stats,
+      .grid-3,
+      .grid-4,
+      .timeline,
+      .flow {
+        grid-template-columns: 1fr;
+      }
+
+      .grid-2 {
+        grid-template-columns: 1fr;
+      }
+
+      .flow-step:not(:last-child)::after {
+        content: "↓";
+        right: 50%;
+        top: auto;
+        bottom: -20px;
+        transform: translateX(50%);
+      }
+
+      .flow {
+        gap: 24px;
+      }
+
+      .risk-row {
+        grid-template-columns: 120px 1fr 80px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .hero {
+        min-height: auto;
+        padding: 58px 18px 46px;
+      }
+
+      h1 {
+        font-size: 3.1rem;
+      }
+
+      main {
+        padding: 18px 12px 60px;
+      }
+
+      section {
+        border-radius: 22px;
+        padding: 24px 18px;
+      }
+
+      .nav-inner {
+        justify-content: flex-start;
+        overflow-x: auto;
+        flex-wrap: nowrap;
+      }
+
+      .risk-row {
+        grid-template-columns: 1fr;
+        gap: 6px;
+      }
+
+      .button {
+        width: 100%;
+      }
     }
   </style>
 </head>
-
 <body>
   <header class="hero" id="top">
     <div class="hero-inner">
-      <div class="eyebrow">Advanced Information Technology • Generative AI</div>
+      <div class="pill">Advanced Information Technology • Generative AI</div>
       <h1>ChatGPT: Innovation, Ethics, and Social Impact</h1>
       <p>
-        This website explains what ChatGPT is, how it is used in real-world settings, and why its benefits must be balanced with ethics, accountability, privacy, and human judgment.
+        A public-facing website explaining what ChatGPT is, where it is used, why it matters, and how its benefits can be balanced with ethics, safety, privacy, and human responsibility.
       </p>
       <div class="hero-actions">
-        <a class="button" href="#applications">View Real-World Examples</a>
-        <a class="button secondary" href="#ethics">See Ethical Analysis</a>
+        <a class="button primary" href="#applications">View Real-World Examples</a>
+        <a class="button secondary" href="#responsible-release">See Responsible Release Plan</a>
       </div>
-
-      <div class="stat-row" aria-label="Project highlights">
-        <div class="stat"><strong>Target Technology</strong><span>ChatGPT and generative AI chatbots</span></div>
-        <div class="stat"><strong>Application Domains</strong><span>Education and customer service/business</span></div>
-        <div class="stat"><strong>Ethical Lenses</strong><span>Utilitarianism and deontology</span></div>
+      <div class="hero-stats">
+        <div class="stat-card"><strong>Target Technology</strong><span>ChatGPT and generative AI chatbots</span></div>
+        <div class="stat-card"><strong>Application Domains</strong><span>Education and customer service/business</span></div>
+        <div class="stat-card"><strong>Ethical Lenses</strong><span>Utilitarianism and deontology</span></div>
       </div>
     </div>
   </header>
 
-  <nav aria-label="Main navigation">
+  <nav>
     <div class="nav-inner">
       <a href="#intro">Intro</a>
-      <a href="#technology">How It Works</a>
+      <a href="#how-it-works">How It Works</a>
       <a href="#applications">Applications</a>
       <a href="#challenges">Challenges</a>
       <a href="#ethics">Ethics</a>
       <a href="#implications">Implications</a>
+      <a href="#responsible-release">Safety Plan</a>
       <a href="#recommendations">Recommendations</a>
       <a href="#stakeholders">Stakeholders</a>
       <a href="#team">Team Roles</a>
-      <a href="#rubric">Project Requirements</a>
+      <a href="#requirements">Project Goals</a>
       <a href="#sources">Sources</a>
     </div>
   </nav>
 
   <main>
     <section id="intro">
-      <div class="section-top">
-        <div>
-          <div class="label">Homepage / Introduction</div>
-          <h2>What technology did we choose, and why does it matter?</h2>
-        </div>
-      </div>
+      <div class="label">Introduction</div>
+      <h2>What technology did we choose, and why does it matter?</h2>
       <p>
         Our team chose <strong>ChatGPT</strong>, a generative artificial intelligence chatbot developed by OpenAI. ChatGPT can answer questions, explain concepts, summarize information, brainstorm ideas, draft writing, generate code, and support communication tasks through natural language.
       </p>
       <p>
-        We chose ChatGPT because it is no longer just a futuristic idea. It is already being used by students, teachers, businesses, and everyday users. This makes ChatGPT important not only as a technical system, but also as a social force that affects learning, work, trust, privacy, creativity, and accountability.
+        We chose ChatGPT because it is no longer only a futuristic idea. It is already being used by students, teachers, businesses, workers, and everyday users. This makes ChatGPT important not only as a technical system, but also as a social force that affects learning, work, trust, privacy, creativity, and accountability.
       </p>
 
       <div class="grid grid-3">
@@ -446,7 +702,7 @@
       </div>
     </section>
 
-    <section id="technology">
+    <section id="how-it-works">
       <div class="label">Technology Explanation</div>
       <h2>How does ChatGPT work?</h2>
       <p class="subtitle">
@@ -461,7 +717,7 @@
         <div class="flow-step">5. Human verifies result</div>
       </div>
 
-      <div class="callout warning">
+      <div class="callout">
         Important limitation: ChatGPT can sound confident even when it is wrong. This is why human review is essential in school, business, healthcare, law, and other serious settings.
       </div>
     </section>
@@ -474,53 +730,51 @@
       </p>
 
       <div class="grid grid-2">
-        <article class="case-card">
-          <div class="case-head education">
-            <h3>Application 1: Education — ChatGPT as a learning assistant</h3>
+        <div class="card gradient-card">
+          <div class="gradient-head blue-head">
+            <span class="tag">Application 1</span>
+            <h3>Education — ChatGPT as a learning assistant</h3>
             <p>Example: ChatGPT Edu is designed for universities to deploy AI to students, faculty, researchers, and campus operations.</p>
           </div>
-          <div class="case-body">
-            <p>
-              In education, ChatGPT can help students understand hard topics, summarize readings, brainstorm ideas, practice questions, and receive tutoring-style explanations outside normal class time. Teachers and faculty can also use AI for feedback, planning, and administrative support.
-            </p>
-            <div class="mini-title">Benefits</div>
+          <div class="gradient-body">
+            <p>In education, ChatGPT can help students understand difficult topics, summarize readings, brainstorm ideas, practice questions, and receive tutoring-style explanations outside normal class time.</p>
+            <div class="mini-label">Benefits</div>
             <ul>
               <li>Faster study support and personalized explanations</li>
               <li>Help for students who are stuck outside class hours</li>
               <li>Support for faculty productivity and campus operations</li>
             </ul>
-            <div class="mini-title">Ethical complexity</div>
+            <div class="mini-label">Ethical complexity</div>
             <ul>
               <li>Students may submit AI-generated work as their own</li>
               <li>Overdependence can weaken writing, memory, and critical thinking</li>
               <li>Unequal access to paid tools can create unfair advantages</li>
             </ul>
           </div>
-        </article>
+        </div>
 
-        <article class="case-card">
-          <div class="case-head business">
-            <h3>Application 2: Customer Service — AI assistants in business</h3>
+        <div class="card gradient-card">
+          <div class="gradient-head pink-head">
+            <span class="tag">Application 2</span>
+            <h3>Customer Service — AI assistants in business</h3>
             <p>Example: Klarna’s OpenAI-powered assistant handled millions of customer conversations in its first month.</p>
           </div>
-          <div class="case-body">
-            <p>
-              In customer service, ChatGPT-style tools can answer questions, summarize issues, help with refunds or returns, draft responses, and support workers. Businesses may use these tools to speed up service and reduce repetitive work.
-            </p>
-            <div class="mini-title">Benefits</div>
+          <div class="gradient-body">
+            <p>In customer service, ChatGPT-style tools can answer questions, summarize issues, help with refunds or returns, draft responses, and support workers.</p>
+            <div class="mini-label">Benefits</div>
             <ul>
               <li>Faster answers for customers</li>
               <li>Lower workload for support teams</li>
               <li>24/7 support across languages and markets</li>
             </ul>
-            <div class="mini-title">Ethical complexity</div>
+            <div class="mini-label">Ethical complexity</div>
             <ul>
               <li>AI may give incorrect or misleading answers</li>
               <li>Customers may not know when they are talking to AI</li>
               <li>Automation can create job disruption and accountability concerns</li>
             </ul>
           </div>
-        </article>
+        </div>
       </div>
     </section>
 
@@ -532,16 +786,18 @@
       </p>
 
       <div class="grid grid-2">
-        <div class="card white">
+        <div class="card">
           <h3>Risk intensity map</h3>
-          <div class="risk-meter"><strong>Misinformation</strong><div class="bar"><div class="fill" style="width: 88%"></div></div><span>High</span></div>
-          <div class="risk-meter"><strong>Academic honesty</strong><div class="bar"><div class="fill" style="width: 86%"></div></div><span>High</span></div>
-          <div class="risk-meter"><strong>Privacy</strong><div class="bar"><div class="fill" style="width: 80%"></div></div><span>High</span></div>
-          <div class="risk-meter"><strong>Bias</strong><div class="bar"><div class="fill" style="width: 74%"></div></div><span>Medium-high</span></div>
-          <div class="risk-meter"><strong>Job impact</strong><div class="bar"><div class="fill" style="width: 70%"></div></div><span>Medium-high</span></div>
+          <div class="risk-list">
+            <div class="risk-row"><span>Misinformation</span><div class="bar"><div class="fill" style="width: 92%"></div></div><span>High</span></div>
+            <div class="risk-row"><span>Academic honesty</span><div class="bar"><div class="fill" style="width: 90%"></div></div><span>High</span></div>
+            <div class="risk-row"><span>Privacy</span><div class="bar"><div class="fill" style="width: 84%"></div></div><span>High</span></div>
+            <div class="risk-row"><span>Bias</span><div class="bar"><div class="fill" style="width: 70%"></div></div><span>Med-high</span></div>
+            <div class="risk-row"><span>Job impact</span><div class="bar"><div class="fill" style="width: 66%"></div></div><span>Med-high</span></div>
+          </div>
         </div>
 
-        <div class="card white">
+        <div class="card">
           <h3>Why responsible use is difficult</h3>
           <ul>
             <li><strong>Accuracy:</strong> ChatGPT can hallucinate or invent details.</li>
@@ -566,53 +822,46 @@
           <div class="icon">⚖️</div>
           <h3>Lens 1: Utilitarianism</h3>
           <p><strong>Core question:</strong> Does ChatGPT create more overall benefit than harm?</p>
-          <p>
-            From this view, ChatGPT can be ethical if it improves learning, saves time, supports workers, reduces repetitive tasks, and makes useful information easier to access.
-          </p>
-          <p>
-            But if it causes cheating, misinformation, privacy violations, or harmful job disruption, the harms may outweigh the benefits.
-          </p>
+          <p>From this view, ChatGPT can be ethical if it improves learning, saves time, supports workers, reduces repetitive tasks, and makes useful information easier to access.</p>
+          <p>But if it causes cheating, misinformation, privacy violations, or harmful job disruption, the harms may outweigh the benefits.</p>
         </div>
-
         <div class="card">
           <div class="icon">📜</div>
           <h3>Lens 2: Deontology</h3>
           <p><strong>Core question:</strong> Are people using ChatGPT according to duties, rules, and rights?</p>
-          <p>
-            From this view, students have a duty to be honest, businesses have a duty to avoid misleading customers, and developers have a duty to reduce risks and improve transparency.
-          </p>
-          <p>
-            Even if ChatGPT creates benefits, it can still be unethical if it is used dishonestly or without respect for privacy, consent, and accountability.
-          </p>
+          <p>From this view, students have a duty to be honest, businesses have a duty to avoid misleading customers, and developers have a duty to reduce risks and improve transparency.</p>
+          <p>Even if ChatGPT creates benefits, it can still be unethical if it is used dishonestly or without respect for privacy, consent, and accountability.</p>
         </div>
       </div>
 
-      <table>
-        <thead>
-          <tr>
-            <th>Application Context</th>
-            <th>Utilitarian Analysis</th>
-            <th>Deontological Analysis</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Education</td>
-            <td>Helpful if it improves learning and access to support more than it harms academic integrity.</td>
-            <td>Students and teachers must follow clear rules about disclosure, authorship, and honest work.</td>
-          </tr>
-          <tr>
-            <td>Customer Service</td>
-            <td>Helpful if it improves service speed and quality more than it creates misinformation or job harm.</td>
-            <td>Companies should be transparent when AI is used and must protect customer rights and data.</td>
-          </tr>
-          <tr>
-            <td>Privacy</td>
-            <td>Productivity benefits do not justify careless exposure of sensitive personal or business information.</td>
-            <td>Organizations have a duty to protect data, get consent where needed, and limit unnecessary collection.</td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Application Context</th>
+              <th>Utilitarian Analysis</th>
+              <th>Deontological Analysis</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Education</td>
+              <td>Helpful if it improves learning and access to support more than it harms academic integrity.</td>
+              <td>Students and teachers must follow clear rules about disclosure, authorship, and honest work.</td>
+            </tr>
+            <tr>
+              <td>Customer Service</td>
+              <td>Helpful if it improves service speed and quality more than it creates misinformation or job harm.</td>
+              <td>Companies should be transparent when AI is used and must protect customer rights and data.</td>
+            </tr>
+            <tr>
+              <td>Privacy</td>
+              <td>Productivity benefits do not justify careless exposure of sensitive personal or business information.</td>
+              <td>Organizations have a duty to protect data, get consent where needed, and limit unnecessary collection.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </section>
 
     <section id="implications">
@@ -620,8 +869,50 @@
       <h2>What social, political, and cultural concerns does ChatGPT create?</h2>
       <div class="grid grid-3">
         <div class="card"><div class="icon">🗳️</div><h3>Political influence</h3><p>ChatGPT can help people understand public issues, but it can also generate persuasive misinformation, biased arguments, or manipulative political content.</p></div>
-        <div class="card"><div class="icon">💼</div><h3>Economic impact</h3><p>AI can improve productivity, but it also changes job expectations and may reduce demand for some repetitive communication or support roles.</p></div>
+        <div class="card"><div class="icon">💼</div><h3>Economic impact</h3><p>AI can improve productivity, but it also changes job expectations and may reduce demand for some repetitive writing or support roles.</p></div>
         <div class="card"><div class="icon">🎨</div><h3>Cultural change</h3><p>ChatGPT changes how people learn, write, create, and communicate. Society must decide when AI help is useful and when it weakens human creativity.</p></div>
+      </div>
+    </section>
+
+    <section id="responsible-release">
+      <div class="label">Improvement Based on Feedback</div>
+      <h2>How should companies balance fast AI release with safety?</h2>
+      <p class="subtitle">
+        Class feedback asked us to explain more about how companies and developers should release AI quickly while still making sure it is safe and responsible. Our improved website adds a practical release plan.
+      </p>
+
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-number">1</div>
+          <h3>Internal testing</h3>
+          <p>Before launch, developers should test the model with difficult prompts, unsafe requests, biased scenarios, and privacy-sensitive situations.</p>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-number">2</div>
+          <h3>Red-team review</h3>
+          <p>Independent testers should try to break the system, expose harmful outputs, and find weaknesses before real users are affected.</p>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-number">3</div>
+          <h3>Limited rollout</h3>
+          <p>Instead of releasing to everyone at once, companies should start with a controlled beta, monitor problems, and improve the system.</p>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-number">4</div>
+          <h3>Ongoing monitoring</h3>
+          <p>After release, companies should track errors, user complaints, misuse patterns, and bias reports, then update the system regularly.</p>
+        </div>
+      </div>
+
+      <div class="grid grid-4">
+        <div class="card measure-card"><h3>Reduce bias</h3><ul><li>Use diverse test prompts.</li><li>Check outputs across demographic groups.</li><li>Audit model responses for unfair patterns.</li></ul></div>
+        <div class="card measure-card"><h3>Reduce misinformation</h3><ul><li>Use uncertainty warnings.</li><li>Encourage source checking.</li><li>Add human review for high-impact answers.</li></ul></div>
+        <div class="card measure-card"><h3>Protect privacy</h3><ul><li>Limit sensitive data collection.</li><li>Mask personal information.</li><li>Set clear data retention rules.</li></ul></div>
+        <div class="card measure-card"><h3>Prevent overreliance</h3><ul><li>Explain AI limitations.</li><li>Require user verification.</li><li>Design AI as assistance, not final authority.</li></ul></div>
+      </div>
+
+      <div class="callout green">
+        Responsible innovation does not mean stopping progress. It means releasing AI in stages, testing it carefully, being transparent about risks, and keeping humans accountable for important decisions.
       </div>
     </section>
 
@@ -633,13 +924,75 @@
       </p>
 
       <div class="grid grid-2">
-        <div class="card"><h3>For schools and teachers</h3><ul><li>Create clear AI-use policies for assignments.</li><li>Require drafts, reflections, oral explanations, or process-based work.</li><li>Teach students how to verify AI responses and cite AI use when required.</li></ul></div>
-        <div class="card"><h3>For students</h3><ul><li>Use ChatGPT as a tutor, not as a replacement for learning.</li><li>Do not submit AI-generated work as if it is fully your own.</li><li>Use it for brainstorming, review, practice questions, and explanations.</li></ul></div>
-        <div class="card"><h3>For businesses</h3><ul><li>Review AI-generated customer responses before relying on them.</li><li>Tell customers when they are interacting with AI.</li><li>Protect sensitive customer and company data.</li></ul></div>
-        <div class="card"><h3>For developers and policymakers</h3><ul><li>Test AI systems for bias, privacy risks, and unsafe outputs.</li><li>Design AI tools with transparency and auditability.</li><li>Create rules for high-impact settings like education, finance, healthcare, and public services.</li></ul></div>
+        <div class="card">
+          <h3>For schools and teachers</h3>
+          <ul>
+            <li>Create clear AI-use policies for assignments.</li>
+            <li>Require drafts, reflections, oral explanations, or process-based work.</li>
+            <li>Teach students how to verify AI responses and cite AI use when required.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>For students</h3>
+          <ul>
+            <li>Use ChatGPT as a tutor, not as a replacement for learning.</li>
+            <li>Do not submit AI-generated work as if it is fully your own.</li>
+            <li>Use it for brainstorming, review, practice questions, and explanations.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>For businesses</h3>
+          <ul>
+            <li>Review AI-generated customer responses before relying on them.</li>
+            <li>Tell customers when they are interacting with AI.</li>
+            <li>Protect sensitive customer and company data.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>For developers and policymakers</h3>
+          <ul>
+            <li>Test AI systems for bias, privacy risks, and unsafe outputs.</li>
+            <li>Design AI tools with transparency and auditability.</li>
+            <li>Create rules for high-risk uses in education, finance, healthcare, and public services.</li>
+          </ul>
+        </div>
       </div>
 
-      <div class="callout success">
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Risk</th>
+              <th>Developer-level measure</th>
+              <th>Company-level policy</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Bias</td>
+              <td>Run fairness tests across varied prompts, identities, languages, and use cases.</td>
+              <td>Publish clear evaluation standards and review reported harms.</td>
+            </tr>
+            <tr>
+              <td>Misinformation</td>
+              <td>Add uncertainty labels, retrieval from trusted sources, and output verification tools.</td>
+              <td>Require human review in high-stakes contexts and correct known errors quickly.</td>
+            </tr>
+            <tr>
+              <td>Privacy</td>
+              <td>Minimize data collection, anonymize logs, and block sensitive inputs where possible.</td>
+              <td>Create data-use policies, retention limits, and user consent practices.</td>
+            </tr>
+            <tr>
+              <td>Overreliance</td>
+              <td>Design reminders that AI can be wrong and require user confirmation.</td>
+              <td>Train employees and students to use AI as support, not final judgment.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout green">
         Strong responsible-use standard: ChatGPT should be used as a supervised assistant, not as an unchecked decision-maker.
       </div>
     </section>
@@ -648,12 +1001,11 @@
       <div class="label">Stakeholders</div>
       <h2>Who is the main audience for our ethical analysis?</h2>
       <p class="subtitle">The social impact of ChatGPT depends on the choices of many groups, not just AI developers.</p>
-
       <div class="grid grid-3">
         <div class="card stakeholder-card"><div class="small-icon">🎓</div><div><h3>Students</h3><p>Use AI for support, not cheating. Learn how to check and improve AI outputs.</p></div></div>
-        <div class="card stakeholder-card"><div class="small-icon">👩‍🏫</div><div><h3>Educators</h3><p>Design clear AI rules and assignments that measure real understanding.</p></div></div>
+        <div class="card stakeholder-card"><div class="small-icon">🧑‍🏫</div><div><h3>Educators</h3><p>Design clear AI rules and assignments that measure real understanding.</p></div></div>
         <div class="card stakeholder-card"><div class="small-icon">🏢</div><div><h3>Businesses</h3><p>Use AI responsibly, disclose AI use, and protect customer information.</p></div></div>
-        <div class="card stakeholder-card"><div class="small-icon">🧑‍💻</div><div><h3>Developers</h3><p>Build safer systems with testing, transparency, privacy protection, and bias reduction.</p></div></div>
+        <div class="card stakeholder-card"><div class="small-icon">👩‍💻</div><div><h3>Developers</h3><p>Build safer systems with testing, transparency, privacy protection, and bias reduction.</p></div></div>
         <div class="card stakeholder-card"><div class="small-icon">🏛️</div><div><h3>Policymakers</h3><p>Create guardrails for high-risk uses while still allowing innovation.</p></div></div>
         <div class="card stakeholder-card"><div class="small-icon">👥</div><div><h3>General public</h3><p>Understand that AI outputs should be questioned, verified, and used carefully.</p></div></div>
       </div>
@@ -667,23 +1019,23 @@
       </p>
 
       <div class="grid grid-2">
-        <div class="card stakeholder-card"><div class="small-icon">🖥️</div><div><h3>Muhammad</h3><p>Website build, website structure, visual design, website walkthrough, introduction, and how ChatGPT works.</p></div></div>
-        <div class="card stakeholder-card"><div class="small-icon">🎞️</div><div><h3>Michael</h3><p>Slideshow overview, project introduction, and explanation of how the slideshow connects to the website.</p></div></div>
-        <div class="card stakeholder-card"><div class="small-icon">⚠️</div><div><h3>Asadallah</h3><p>Applications and social challenges, including education, customer service, misinformation, privacy, bias, and job impact.</p></div></div>
+        <div class="card stakeholder-card"><div class="small-icon">🖥️</div><div><h3>Muhammad Alam</h3><p>Website build, website structure, visual design, website walkthrough, introduction, and how ChatGPT works.</p></div></div>
+        <div class="card stakeholder-card"><div class="small-icon">🎞️</div><div><h3>Michael Whitehead</h3><p>Slideshow overview, project introduction, and explanation of how the slideshow connects to the website.</p></div></div>
+        <div class="card stakeholder-card"><div class="small-icon">⚠️</div><div><h3>Asadallah Ghumman</h3><p>Applications and social challenges, including education, customer service, misinformation, privacy, bias, and job impact.</p></div></div>
         <div class="card stakeholder-card"><div class="small-icon">✅</div><div><h3>Nuermaimaiti Yierfan</h3><p>Ethical lenses, social implications, recommendations, stakeholders, conclusion, and final review/support.</p></div></div>
       </div>
     </section>
 
-    <section id="rubric">
+    <section id="requirements">
       <div class="label">Project Requirements</div>
       <h2>How this website addresses the project goals</h2>
-      <div class="rubric">
-        <div class="rubric-item"><strong><span class="check">✓</span> Reasonable target technology</strong><span>ChatGPT is a clear advanced IT example with major social impact.</span></div>
-        <div class="rubric-item"><strong><span class="check">✓</span> Technology introduction</strong><span>The site explains what ChatGPT is and how large language models work.</span></div>
-        <div class="rubric-item"><strong><span class="check">✓</span> Real-world applications</strong><span>The site gives two application contexts: education and customer service/business.</span></div>
-        <div class="rubric-item"><strong><span class="check">✓</span> Critical discussion</strong><span>The site discusses benefits, risks, complexity, and social implications.</span></div>
-        <div class="rubric-item"><strong><span class="check">✓</span> Two ethical lenses</strong><span>Utilitarianism and deontology are applied to each context.</span></div>
-        <div class="rubric-item"><strong><span class="check">✓</span> Recommendations</strong><span>The site gives practical recommendations for each stakeholder group.</span></div>
+      <div class="grid grid-2 check-grid">
+        <div class="card"><strong>✓ Reasonable target technology</strong><p>ChatGPT is a clear advanced IT example with major social impact.</p></div>
+        <div class="card"><strong>✓ Technology introduction</strong><p>The site explains what ChatGPT is and how large language models work.</p></div>
+        <div class="card"><strong>✓ Real-world applications</strong><p>The site gives two application contexts: education and customer service/business.</p></div>
+        <div class="card"><strong>✓ Critical discussion</strong><p>The site discusses benefits, risks, complexity, safety testing, and social implications.</p></div>
+        <div class="card"><strong>✓ Two ethical lenses</strong><p>Utilitarianism and deontology are applied to each context.</p></div>
+        <div class="card"><strong>✓ Recommendations</strong><p>The site gives practical recommendations for each stakeholder group and developer release practices.</p></div>
       </div>
     </section>
 
@@ -693,7 +1045,7 @@
       <p>
         ChatGPT is a powerful example of advanced information technology. It can support education, improve communication, speed up customer service, and help people work faster. At the same time, it creates serious concerns about misinformation, bias, privacy, academic honesty, job impact, and accountability.
       </p>
-      <div class="callout">
+      <div class="callout green">
         Final argument: ChatGPT is most ethical when humans stay informed, responsible, and in control.
       </div>
     </section>
@@ -701,7 +1053,9 @@
     <section id="sources">
       <div class="label">Sources</div>
       <h2>Research sources</h2>
+      <p class="subtitle">These sources helped support our explanation of ChatGPT, real-world applications, privacy, safety, and responsible AI use.</p>
       <ul class="sources">
+        <li>OpenAI. “Introducing ChatGPT.” <a href="https://openai.com/index/chatgpt/" target="_blank" rel="noopener noreferrer">https://openai.com/index/chatgpt/</a></li>
         <li>OpenAI. “Introducing ChatGPT Edu.” <a href="https://openai.com/index/introducing-chatgpt-edu/" target="_blank" rel="noopener noreferrer">https://openai.com/index/introducing-chatgpt-edu/</a></li>
         <li>OpenAI. “Enterprise Privacy at OpenAI.” <a href="https://openai.com/enterprise-privacy/" target="_blank" rel="noopener noreferrer">https://openai.com/enterprise-privacy/</a></li>
         <li>OpenAI. “Klarna’s AI assistant does the work of 700 full-time agents.” <a href="https://openai.com/index/klarna/" target="_blank" rel="noopener noreferrer">https://openai.com/index/klarna/</a></li>
@@ -711,8 +1065,8 @@
     </section>
   </main>
 
-  <footer class="footer">
-    <p>Final Project Website • ChatGPT, Ethics, and Society</p>
+  <footer>
+    Final Project Website • ChatGPT, Ethics, and Society
   </footer>
 </body>
 </html>
